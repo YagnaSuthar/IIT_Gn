@@ -12,19 +12,8 @@ const ChatPanel = ({ agent, farmData, sessionId }) => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [showReasoningFor, setShowReasoningFor] = useState(new Set()); // Track which messages show reasoning
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
-
-  const formatScalar = (value) => {
-    if (value === null || value === undefined) return '';
-    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return String(value);
-    try {
-      return JSON.stringify(value);
-    } catch {
-      return String(value);
-    }
-  };
 
   // SmartChatUI component removed per user request for simple chatbot interface
 

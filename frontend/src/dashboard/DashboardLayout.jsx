@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import ChatPanel from './ChatPanel';
-import AgentDetails from './AgentDetails';
 // import OfflineIndicator from '../components/OfflineIndicator';
 import { dataService } from '../services/apiService';
 import '../styles/Dashboard/DashboardLayout.css';
@@ -92,8 +91,6 @@ const DashboardLayout = () => {
         return 'super-agent';
     }
   };
-
-  const agent = routeToAgent();
 
   return (
     <>
