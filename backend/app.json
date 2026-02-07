@@ -1,0 +1,35 @@
+{
+  "name": "FarmXpert",
+  "description": "Multi-Agent AI Platform for Precision Farming",
+  "keywords": ["farming", "ai", "agriculture", "gemini", "fastapi"],
+  "website": "https://github.com/yourusername/farmxpert",
+  "repository": "https://github.com/yourusername/farmxpert",
+  "logo": "https://example.com/logo.png",
+  "success_url": "/",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "env": {
+    "APP_ENV": {
+      "value": "production",
+      "description": "Application environment"
+    },
+    "APP_HOST": {
+      "value": "0.0.0.0",
+      "description": "Application host"
+    },
+    "APP_PORT": {
+      "value": "8000",
+      "description": "Application port"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0",
+      "as": "DATABASE"
+    }
+  ]
+}
