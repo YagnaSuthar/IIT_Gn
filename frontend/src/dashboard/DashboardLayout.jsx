@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ChatPanel from './ChatPanel';
 // import OfflineIndicator from '../components/OfflineIndicator';
 import { dataService } from '../services/apiService';
@@ -7,7 +7,6 @@ import '../styles/Dashboard/DashboardLayout.css';
 import '../styles/components/OfflineIndicator.css';
 
 const DashboardLayout = () => {
-  const location = useLocation();
   const [farmData, setFarmData] = useState({
     farm_name: 'Krishna farm',
     location: 'Ahmedabad, Gujarat',
@@ -37,60 +36,6 @@ const DashboardLayout = () => {
     })();
   }, []);
 
-
-  const routeToAgent = () => {
-    const last = location.pathname.split('/').pop();
-    switch (last) {
-      case 'orchestrator':
-        return 'super-agent';
-      case 'crop-selector':
-        return 'crop_selector';
-      case 'seed-selection':
-        return 'seed_selection';
-      case 'soil-health':
-        return 'soil_health';
-      case 'fertilizer-advisor':
-        return 'fertilizer_advisor';
-      case 'irrigation-planner':
-        return 'irrigation_planner';
-      case 'pest-diagnostic':
-        return 'pest_disease_diagnostic';
-      case 'weather-watcher':
-        return 'weather_watcher';
-      case 'growth-monitor':
-        return 'growth_stage_monitor';
-      case 'task-scheduler':
-        return 'task_scheduler';
-      case 'machinery-manager':
-        return 'machinery_manager';
-      case 'drone-commander':
-        return 'drone_commander';
-      case 'layout-mapper':
-        return 'layout_mapper';
-      case 'yield-predictor':
-        return 'yield_predictor';
-      case 'profit-optimizer':
-        return 'profit_optimization';
-      case 'sustainability-tracker':
-        return 'sustainability_tracker';
-      case 'market-intelligence':
-        return 'market_intelligence';
-      case 'logistics-storage':
-        return 'logistics_storage';
-      case 'input-procurement':
-        return 'input_procurement';
-      case 'crop-insurance-risk':
-        return 'crop_insurance_risk';
-      case 'farmer-coach':
-        return 'farmer_coach';
-      case 'compliance-certification':
-        return 'compliance_certification';
-      case 'community-engagement':
-        return 'community_engagement';
-      default:
-        return 'super-agent';
-    }
-  };
 
   return (
     <>
