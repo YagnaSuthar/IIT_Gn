@@ -20,7 +20,6 @@ packaging==24.2
 requests==2.32.3
 numpy==1.26.4
 pandas==2.2.3
-catboost==1.2.7
 loguru>=0.7.0
 openai>=1.0.0
 gunicorn==21.2.0

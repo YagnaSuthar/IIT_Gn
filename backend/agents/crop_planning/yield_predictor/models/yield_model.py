@@ -2,9 +2,14 @@ import json
 import os
 from dataclasses import dataclass
 
-import numpy as np
-import pandas as pd
-from catboost import CatBoostRegressor
+try:
+    import numpy as np
+    import pandas as pd
+    from catboost import CatBoostRegressor
+except Exception:  # pragma: no cover
+    np = None
+    pd = None
+    CatBoostRegressor = None
  
  
 @dataclass
@@ -43,6 +48,11 @@ def load_artifacts(artifacts_dir: str | None = None) -> ModelArtifacts:
     global _CACHED
     if _CACHED is not None:
         return _CACHED
+
+    if CatBoostRegressor is None or pd is None or np is None:
+        raise RuntimeError(
+            "Yield predictor dependencies missing. Install optional deps: catboost, pandas, numpy."
+        )
  
     artifacts_dir = artifacts_dir or _default_artifacts_dir()
     model_path = os.path.join(artifacts_dir, "catboost_yield_model.cbm")
@@ -106,6 +116,8 @@ def _normalize_inputs(payload: dict) -> dict:
  
  
 def _to_features_df(normalized: dict, artifacts: ModelArtifacts) -> pd.DataFrame:
+    if pd is None:
+        raise RuntimeError("pandas is required for yield prediction")
     row = dict(normalized)
  
     if artifacts.district_encoding == "freq":
@@ -136,6 +148,9 @@ def predict_yield(input_data):
         payload = input_data
     else:
         raise ValueError("input_data must be a dict or JSON string")
+
+    if np is None:
+        raise RuntimeError("numpy is required for yield prediction")
 
     artifacts = load_artifacts()
     normalized = _normalize_inputs(payload)
